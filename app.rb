@@ -27,9 +27,24 @@ get '/pokemons/:id' do
   erb :"pokemon/show"
 end
 
+get '/pokemons/:id/edit' do
+  @pokemon = Pokemon.find(params[:id])
+  erb :"pokemon/edit"
+end
 
-put '/pokemons/:id/' do
-  @pokemons = Pokemon.find(params[:id])
-  @pokemons.update(params[:pokemon])
-  redirect "/pokemons/#{@pokemons.name}"
+put '/pokemons/:id' do
+  @pokemon = Pokemon.find(params[:id])
+  @pokemon.update(params[:pokemon])
+  redirect "/pokemons/#{@pokemon.id}"
+end
+
+get '/pokemons/:id/delete' do
+  @pokemon = Pokemon.find(params[:id])
+  erb :"pokemon/delete"
+end
+
+delete '/pokemons/:id' do
+  @pokemon = Pokemon.find(params[:id])
+  @pokemon.destroy
+  redirect "/pokemons"
 end
