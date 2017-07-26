@@ -10,21 +10,26 @@ require_relative 'models/pokemon'
 
 get '/pokemons' do
   @pokemons = Pokemon.all
-  erb :"Pokemon/index"
+  erb :"pokemon/index"
 end
 
-get '/pokemons/poke_type' do
-  @pokemons = Pokemon.find(params[:poke_type])
-  erb :"pokemon/show"
+get '/pokemons/new' do
+  erb :"pokemon/new"
 end
 
 post '/pokemons' do
-  @pokemons = Pokemon.create(params[:pokemon])
-  redirect "/pokemons/#{@pokemon.name}"
+  @pokemon = Pokemon.create(params[:pokemon])
+  redirect "/pokemons/#{@pokemon.id}"
 end
 
-put '/pokemons/name' do
-  @pokemons = Pokemon.find(params[:name])
+get '/pokemons/:id' do
+  @pokemon = Pokemon.find(params[:id])
+  erb :"pokemon/show"
+end
+
+
+put '/pokemons/:id/' do
+  @pokemons = Pokemon.find(params[:id])
   @pokemons.update(params[:pokemon])
-  redirect("/pokemons/#{@pokemons.name}")
+  redirect "/pokemons/#{@pokemons.name}"
 end
