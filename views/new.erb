@@ -1,0 +1,19 @@
+<h2>New Pokemon</h2>
+
+<form action="/pokemons/<%= @instructor.name %>" method="post" >
+  <input type ="hidden" name="_method" value="input">
+  
+  <label>Name:</label>
+  <input name="pokemon[name]">
+
+  <label>Poke Type:</label>
+  <input Poke Type="pokemon[poke_type]">
+
+  <label>CP:</label>
+  <input CP="pokemon[cp]">
+
+  <label>img_url:</label>
+  <input img_url="pokemon[img_url]">
+
+  <input type="submit" value="Create">
+</form>
